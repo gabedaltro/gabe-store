@@ -9,14 +9,7 @@ const AppRoutes: React.FC = () => {
     <Routes>
       <Route path="*" element={<Error404 />} />
 
-      <Route
-        path="/"
-        element={
-          <DefaultLayout>
-            <Home />
-          </DefaultLayout>
-        }
-      />
+      <Route path="/" element={<DefaultLayout element={<Home />} />} />
     </Routes>
   );
 };
