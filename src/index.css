@@ -20,7 +20,7 @@ body,
 #root {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 
 body {
@@ -88,4 +88,3 @@ ol {
 @page {
   margin: 0.5cm;
 }
-
