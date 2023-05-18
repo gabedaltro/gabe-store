@@ -5,6 +5,8 @@ import api from "./services/api";
 import { Product } from "./types/product";
 import { AppProvider } from "./hooks/app";
 import InsideLoading from "./components/loading/InsideLoading";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./config/theme";
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -27,11 +29,12 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <AppProvider value={{ products }}>
-        {loading ? <InsideLoading /> : <AppRoutes />}
+        <ThemeProvider theme={theme}>
+          {loading ? <InsideLoading /> : <AppRoutes />}
+        </ThemeProvider>
       </AppProvider>
     </BrowserRouter>
   );
 };
 
 export default App;
-
