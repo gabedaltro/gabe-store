@@ -4,13 +4,15 @@ import AppRoutes from "./routes/Routes";
 import api from "./services/api";
 import { Product } from "./types/product";
 import { AppProvider } from "./hooks/app";
-import InsideLoading from "./components/loading/InsideLoading";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./config/theme";
+import { useWindowSize } from "./hooks/windowSize";
 
 const App: React.FC = () => {
+  const windowSize = useWindowSize();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -21,6 +23,15 @@ const App: React.FC = () => {
         .then((response) => {
           setProducts(response.data.products);
         })
+        .catch((err) => console.error(err));
+    }, 1500);
+
+    setTimeout(() => {
+      api
+        .get("/products/categories")
+        .then((response) => {
+          setCategories(response.data);
+        })
         .catch((err) => console.error(err))
         .finally(() => setLoading(false));
     }, 1500);
@@ -28,9 +39,11 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <AppProvider value={{ products }}>
+      <AppProvider
+        value={{ products, loading, categories, isMobile: windowSize.isMobile }}
+      >
         <ThemeProvider theme={theme}>
-          {loading ? <InsideLoading /> : <AppRoutes />}
+          <AppRoutes />
         </ThemeProvider>
       </AppProvider>
     </BrowserRouter>
