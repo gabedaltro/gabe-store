@@ -1,34 +1,24 @@
-import React from "react";
-import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import React from "react";
 
-const useStyles = makeStyles({
+const styles = makeStyles({
   container: {
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
     flexDirection: "column",
-    textAlign: "center",
-  },
-  action: {
-    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
   },
 });
 
 const Error404: React.FC = () => {
-  const classes = useStyles();
+  const classes = styles();
 
   return (
-    <>
-      <div className={classes.container}>
-        <Typography variant="h4">Pagína não encontrada.</Typography>
-        <div className={classes.action}>
-          <Link to="/dashboard">Voltar ao início</Link>
-        </div>
-      </div>
-    </>
+    <div className={classes.container}>
+      <Typography>Pagina não encontrada</Typography>
+    </div>
   );
 };
 
