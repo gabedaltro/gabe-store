@@ -13,6 +13,10 @@ const useStyles = makeStyles({
   input: {
     padding: "2px 10px",
   },
+  logo: {
+    height: 100,
+    borderRadius: 16,
+  },
 });
 
 const SearchInput = styled("div")(() => ({
@@ -34,8 +38,12 @@ const ButtonSearch = styled("div")(({ theme }) => ({
   position: "absolute",
   alignItems: "center",
   justifyContent: "center",
+  transition: "all ease 0.5s",
   borderRadius: "0px 40px 40px 0px",
-  backgroundColor: theme.palette.secondary.main,
+  backgroundColor: theme.palette.primary.light,
+  "&:hover": {
+    backgroundColor: theme.palette.primary.dark,
+  },
 }));
 
 const Icons = styled("div")(({ theme }) => ({
@@ -52,7 +60,11 @@ const Navbar: React.FC = () => {
 
   return (
     <div className={classes.container}>
-      <Typography color="#fff">Store</Typography>
+      <a href="/">
+        <Typography color="#fff" fontWeight={600} fontSize={18}>
+          GG Store
+        </Typography>
+      </a>
       <SearchInput>
         <InputBase
           className={classes.input}
