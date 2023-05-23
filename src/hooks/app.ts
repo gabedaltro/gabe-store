@@ -3,6 +3,9 @@ import { Product } from "../types/product";
 
 export type AppContextData = {
   products: Product[];
+  categories: string[];
+  loading: boolean;
+  isMobile: boolean;
 };
 
 const AppContext = createContext<AppContextData>({} as AppContextData);
