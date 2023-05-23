@@ -7,7 +7,7 @@ import DefaultLayout from "../components/layout/DefaultLayout";
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="*" element={<Error404 />} />
+      <Route path="*" element={<DefaultLayout element={<Error404 />} />} />
 
       <Route path="/" element={<DefaultLayout element={<Home />} />} />
     </Routes>
