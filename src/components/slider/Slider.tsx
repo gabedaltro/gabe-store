@@ -21,7 +21,7 @@ const Slider: React.FC<SliderProps> = ({
   className,
   ...rest
 }) => {
-  const [containerWidth, setContainerWidth] = useState(150);
+  const [containerWidth, setContainerWidth] = useState(330);
   const [step, setStep] = useState(0);
   const [state, setState] = useState({
     translate: 0,
