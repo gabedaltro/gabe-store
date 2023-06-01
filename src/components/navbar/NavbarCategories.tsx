@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useApp } from "../../hooks/app";
 import { makeStyles } from "@mui/styles";
-import { Icon, LinearProgress, Theme, Typography } from "@mui/material";
+import {
+  IconButton,
+  LinearProgress,
+  Theme,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { More } from "@mui/icons-material";
 import NavbarCategory from "./NavbarCategory";
 import { useWindowSize } from "../../hooks/windowSize";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -118,11 +125,15 @@ const NavbarCategories: React.FC = () => {
           </Typography>
           <div className={classes.content}>
             {categories.slice(0, 5).map((item) => (
-              <a className={classes.categoryItem}>{item}</a>
+              <Link to={`/produtos?categoria=${item}`}>
+                <a className={classes.categoryItem}>{item}</a>
+              </Link>
             ))}
-            <Icon onMouseEnter={handleOnMouseEnter}>
-              <More />
-            </Icon>
+            <Tooltip title="+ categorias">
+              <IconButton onMouseEnter={handleOnMouseEnter}>
+                <More />
+              </IconButton>
+            </Tooltip>
           </div>
           <div
             onClick={() => setShownMenu(false)}
