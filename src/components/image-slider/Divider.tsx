@@ -1,22 +1,21 @@
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import { DefaultTheme } from "styled-components";
 import { Product } from "../../types/product";
+import { Theme } from "@mui/material";
 
-const useStyles = makeStyles((theme: DefaultTheme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   content: {
     width: 15,
     height: 15,
     cursor: "pointer",
-    background: "#fff",
+    background: "#eee",
+    transform: "scale(0.8)",
     borderRadius: "100%",
-    border: "1px solid #666",
     boxShadow: "1px 5px 6px 0px #666",
     transition: "all ease 0.7s",
     "&.active": {
-      background: theme.primary,
-      transform: "scale(1.6)",
-      border: "1px solid #fff",
+      background: theme.palette.primary.main,
+      transform: "scale(1.3)",
     },
   },
   container: {
