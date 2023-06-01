@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     borderRadius: 6,
     boxShadow: "0 0 5px 0 #ddd",
     padding: 20,
-    width: 200,
+    width: 290,
     height: 350,
     alignItems: "center",
     transition: "transform 0.1s ease",
@@ -47,6 +47,7 @@ const useStyles = makeStyles({
   },
   title: {
     height: 30,
+    marginTop: 20,
   },
   headerTitle: {
     gap: 15,
@@ -70,26 +71,26 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
   sliderContainerClassname,
 }) => {
   const classes = useStyles();
-  const { isMobile } = useApp();
+  const { isMobile, loading } = useApp();
 
   return (
     <>
-      {title ? (
+      {!loading ? (
         <div className={classes.headerTitle}>
           <Star fontSize="large" color="primary" />
           <Typography fontSize={26} fontWeight={650}>
-            EM DESTAQUE
+            {title.toUpperCase()}
           </Typography>
         </div>
       ) : (
         <AnimatedBackground className={classes.title} />
       )}
-      {products.length > 0 ? (
+      {!loading ? (
         !isMobile ? (
           <Slider
             className={sliderContainerClassname}
             amount={products.length}
-            itemWidth={230}
+            itemWidth={400}
           >
             {products.map((product) => (
               <FeaturedProductItem
