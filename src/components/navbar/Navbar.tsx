@@ -1,31 +1,23 @@
-import { Search, ShoppingCart } from "@mui/icons-material";
-import { Avatar, Badge, InputBase, Typography, styled } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import React from "react";
+import { Search, ShoppingCart } from "@mui/icons-material";
+import { Avatar, Badge, InputBase, styled } from "@mui/material";
+import { useWindowSize } from "../../hooks/windowSize";
 
-const useStyles = makeStyles({
-  container: {
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  input: {
-    padding: "2px 10px",
-  },
-  logo: {
-    height: 100,
-    borderRadius: 16,
-  },
+const CustomInputBase = styled(InputBase)({
+  padding: "2px 10px",
 });
 
-const SearchInput = styled("div")(() => ({
+const SearchInput = styled("div")(({ theme }) => ({
   minWidth: 350,
   display: "flex",
   alignItems: "center",
   position: "relative",
   backgroundColor: "white",
   borderRadius: "0px 40px 40px 0px",
+  [theme.breakpoints.down("sm")]: {
+    minWidth: 0,
+    flex: 1,
+  },
 }));
 
 const ButtonSearch = styled("div")(({ theme }) => ({
@@ -55,22 +47,40 @@ const Icons = styled("div")(({ theme }) => ({
   },
 }));
 
-const Navbar: React.FC = () => {
-  const classes = useStyles();
+const Container = styled("div")({
+  gap: 15,
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+});
 
+const Navbar: React.FC = () => {
+  const { isMobile } = useWindowSize();
   return (
-    <div className={classes.container}>
+    <Container>
       <a href="/">
-        <Typography color="#fff" fontWeight={600} fontSize={18}>
-          GG Store
-        </Typography>
+        {isMobile ? (
+          <img
+            src="/logo/logo-mobile-nobg.png"
+            width={50}
+            height={50}
+            style={{ borderRadius: 6 }}
+          />
+        ) : (
+          <img
+            src="/logo/logo-desktop-nobg.png"
+            width={150}
+            height={60}
+            style={{ borderRadius: 6 }}
+          />
+        )}
       </a>
       <SearchInput>
-        <InputBase
-          className={classes.input}
+        <CustomInputBase
           fullWidth
           color="warning"
-          placeholder="o que está procurando?"
+          placeholder="o que procura?"
         />
         <ButtonSearch>
           <Search />
@@ -87,7 +97,7 @@ const Navbar: React.FC = () => {
           }
         />
       </Icons>
-    </div>
+    </Container>
   );
 };
 
