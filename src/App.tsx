@@ -6,10 +6,8 @@ import { Product } from "./types/product";
 import { AppProvider } from "./hooks/app";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./config/theme";
-import { useWindowSize } from "./hooks/windowSize";
 
 const App: React.FC = () => {
-  const windowSize = useWindowSize();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -39,9 +37,7 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <AppProvider
-        value={{ products, loading, categories, isMobile: windowSize.isMobile }}
-      >
+      <AppProvider value={{ products, loading, categories }}>
         <ThemeProvider theme={theme}>
           <AppRoutes />
         </ThemeProvider>
