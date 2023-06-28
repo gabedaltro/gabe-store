@@ -1,24 +1,19 @@
-import { Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import React from "react";
+import { Typography, styled } from "@mui/material";
 
-const styles = makeStyles({
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    flex: 1,
-  },
+const Container = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  flex: 1,
 });
 
 const Error404: React.FC = () => {
-  const classes = styles();
-
   return (
-    <div className={classes.container}>
+    <Container>
       <Typography>Pagina não encontrada</Typography>
-    </div>
+    </Container>
   );
 };
 

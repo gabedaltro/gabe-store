@@ -1,68 +1,73 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
-import { Button, Theme, Typography } from "@mui/material";
+import { Button, Typography, styled } from "@mui/material";
 import Input from "../input/Input";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    padding: 20,
-    backgroundColor: theme.palette.primary.dark,
+const Container = styled("div")(({ theme }) => ({
+  padding: 20,
+  backgroundColor: theme.palette.primary.dark,
+}));
+
+const Content = styled("div")({
+  gap: 15,
+  display: "flex",
+  maxWidth: 1260,
+  margin: "0 auto",
+  alignItems: "center",
+  justifyContent: "space-between",
+  "& > div": {
+    flex: 1,
   },
-  content: {
-    gap: 15,
-    display: "flex",
-    maxWidth: 1260,
-    margin: "0 auto",
-    alignItems: "center",
-    justifyContent: "space-between",
-    "& > div": {
-      flex: 1,
-    },
+});
+
+const CustomButton = styled(Button)({
+  maxWidth: 150,
+  fontSize: 15,
+  color: "#fff",
+  textTransform: "none",
+});
+
+const CustomInput = styled(Input)(({ theme }) => ({
+  "&:hover": {
+    borderColor: theme.palette.secondary.main,
   },
-  button: {
-    maxWidth: 100,
+  "&:focus": {
+    borderColor: theme.palette.secondary.main,
   },
 }));
 
 const FooterNewsletter: React.FC = () => {
-  const classes = useStyles();
-
   return (
-    <div className={classes.container}>
-      <div className={classes.content}>
-        <Typography color="#fff" fontSize={14} fontWeight={600}>
+    <Container>
+      <Content>
+        <Typography color="#fff" fontSize={13} fontWeight={600}>
           Receba novidades e promoções exclusivas
         </Typography>
-        <Input
+        <CustomInput
           name="name"
-          placeholder="Insira seu nome"
+          placeholder="insira seu nome"
           required
           type="name"
           autoComplete="name"
         />
-        <Input
+        <CustomInput
           name="email"
-          placeholder="Insira seu e-mail"
+          placeholder="insira seu e-mail"
           required
           type="email"
           autoComplete="email"
         />
-        <Input
+        <CustomInput
           name="number"
-          placeholder="Insira seu whatsapp"
+          placeholder="insira seu whatsapp"
           inputMode="numeric"
           required
           autoComplete="number"
         />
-        <Button
-          className={classes.button}
-          variant="contained"
-          color="secondary"
-        >
+        <CustomButton variant="contained" color="secondary">
           assinar
-        </Button>
-      </div>
-    </div>
+        </CustomButton>
+      </Content>
+    </Container>
   );
 };
 
