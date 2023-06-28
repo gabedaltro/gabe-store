@@ -1,111 +1,163 @@
 import React from "react";
 import FooterNewsletter from "./FooterNewsletter";
-import { makeStyles } from "@mui/styles";
-import { Theme, Typography } from "@mui/material";
+import { Typography, styled } from "@mui/material";
 import { Facebook, Instagram, WhatsApp, YouTube } from "@mui/icons-material";
+import { useWindowSize } from "../../hooks/windowSize";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    padding: 20,
-    backgroundColor: theme.palette.primary.main,
-  },
-  content: {
-    gap: 15,
-    display: "flex",
-    maxWidth: 1260,
-    margin: "0 auto",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  socialMediaList: {
-    display: "flex",
-    gap: 5,
-    "& svg": {
-      fontSize: 30,
-    },
-  },
-  icon: {
-    padding: 5,
-    borderRadius: "50%",
-    height: 50,
-    width: 50,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    "& > a": {
-      height: 30,
-      width: 30,
-      transition: "color 0.3s ease",
-      "&:hover": {
-        color: "#333",
-      },
-    },
-    "&.youtube": {
-      background: "#ff0000",
-    },
-    "&.facebook": {
-      background: "#1771e6",
-    },
-    "&.whatsapp": {
-      background: "#1dc13e",
-    },
-    "&.instagram": {
-      background:
-        "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)",
-    },
-  },
-  store: {
-    textAlign: "center",
+const Container = styled("div")(({ theme }) => ({
+  padding: 20,
+  backgroundColor: theme.palette.primary.main,
+}));
+
+const ContainerTop = styled("div")(({ theme }) => ({
+  gap: 15,
+  padding: 15,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: theme.palette.primary.dark,
+}));
+
+const ImageMobile = styled("img")({
+  width: 50,
+  padding: 5,
+  borderRadius: 6,
+  boxShadow: "0 2px 5px 0 rgba(0,0,0,.18)",
+});
+
+const ImageDesktop = styled("img")(({ theme }) => ({
+  width: 150,
+  padding: 5,
+  borderRadius: 6,
+  boxShadow: "0 2px 5px 0 rgba(0,0,0,.18)",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
   },
 }));
 
-const Footer: React.FC = () => {
-  const classes = useStyles();
+const Content = styled("div")(({ theme }) => ({
+  gap: 15,
+  display: "flex",
+  maxWidth: 1260,
+  margin: "0 auto",
+  alignItems: "center",
+  justifyContent: "space-between",
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+  },
+}));
 
+const SocialMediaList = styled("ul")(({ theme }) => ({
+  display: "flex",
+  gap: 5,
+  "& svg": {
+    fontSize: 25,
+    color: "#fff",
+    transition: "color 0.3s ease",
+    "&:hover": {
+      color: "#ddd",
+    },
+    [theme.breakpoints.down("md")]: {
+      fontSize: 20,
+    },
+  },
+}));
+
+const Icon = styled("li")(({ theme }) => ({
+  padding: 5,
+  borderRadius: "50%",
+  height: 50,
+  width: 50,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  [theme.breakpoints.down("md")]: {
+    width: 40,
+    height: 40,
+  },
+  "& > a": {
+    height: 25,
+    width: 25,
+
+    [theme.breakpoints.down("md")]: {
+      width: 20,
+      height: 20,
+    },
+  },
+  "&.youtube": {
+    background: "#ff0000",
+  },
+  "&.facebook": {
+    background: "#1771e6",
+  },
+  "&.whatsapp": {
+    background: "#1dc13e",
+  },
+  "&.instagram": {
+    background:
+      "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)",
+  },
+}));
+
+const Store = styled("div")({
+  textAlign: "center",
+});
+
+const Footer: React.FC = () => {
+  const { width } = useWindowSize();
   return (
     <footer>
-      <FooterNewsletter />
-      <div className={classes.container}>
-        <div className={classes.content}>
-          <ul className={classes.socialMediaList}>
-            <li className={`${classes.icon} youtube`}>
-              <a target="blank">
-                <YouTube />
-              </a>
-            </li>
-            <li className={`${classes.icon} instagram`}>
-              <a target="blank">
-                <Instagram />
-              </a>
-            </li>
-            <li className={`${classes.icon} facebook`}>
-              <a target="blank">
-                <Facebook />
-              </a>
-            </li>
-            <li className={`${classes.icon} whatsapp`}>
-              <a target="blank">
-                <WhatsApp />
-              </a>
-            </li>
-          </ul>
+      {width < 900 ? (
+        <ContainerTop>
+          <ImageMobile src="/logo/logo-mobile-nobg.png" />
 
-          <div className={classes.store}>
+          <Typography color="#fff">Compre aqui na Gabe Shop</Typography>
+        </ContainerTop>
+      ) : (
+        <FooterNewsletter />
+      )}
+      <Container>
+        <Content>
+          <SocialMediaList>
+            <a target="blank">
+              <Icon className="youtube">
+                <YouTube />
+              </Icon>
+            </a>
+            <a target="blank">
+              <Icon className="instagram">
+                <Instagram />
+              </Icon>
+            </a>
+            <a target="blank">
+              <Icon className="facebook">
+                <Facebook />
+              </Icon>
+            </a>
+            <a target="blank">
+              <Icon className="whatsapp">
+                <WhatsApp />
+              </Icon>
+            </a>
+          </SocialMediaList>
+
+          <Store>
             <Typography color="#fff" fontWeight={600} fontSize={20}>
               GG Store
             </Typography>
-            <Typography color="#fff" fontWeight={600} fontSize={14}>
+            <Typography
+              color="#fff"
+              variant="subtitle2"
+              fontWeight={600}
+              fontSize={14}
+            >
               Since 2021
             </Typography>
-          </div>
+          </Store>
 
-          <img
-            src="/logo/gabe-nobg.png"
-            width={100}
-            style={{ borderRadius: 6 }}
-          />
-        </div>
-      </div>
+          <ImageDesktop src="/logo/logo-desktop-nobg.png" />
+        </Content>
+      </Container>
     </footer>
   );
 };
