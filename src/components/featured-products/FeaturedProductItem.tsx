@@ -110,7 +110,7 @@ const FeaturedProductItem: React.FC<FeaturedProductProps> = ({
   return (
     <li {...rest} className={`${classes.li} ${className}`}>
       <Link to={`/produtos/${product.id}`}>
-        <a className={classes.content}>
+        <>
           {product.discountPercentage && (
             <ProductPromotionTag
               discounted={product.discountPercentage}
@@ -156,7 +156,7 @@ const FeaturedProductItem: React.FC<FeaturedProductProps> = ({
               </Typography>
             </div>
           </div>
-        </a>
+        </>
       </Link>
     </li>
   );

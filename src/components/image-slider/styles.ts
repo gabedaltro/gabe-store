@@ -2,23 +2,18 @@ import styled from "styled-components";
 
 type SliderContentProps = {
   transition: number;
-  translateValue: number;
+  translatevalue: number;
 };
 
 type SlideProps = {
-  imageSrc: string;
-  mobileImageSrc: string;
-};
-
-type SliderProps = {
-  hasBanners: boolean;
+  imagesrc: string;
 };
 
 type ArrowProps = {
   direction: "right" | "left";
 };
 
-export const Slider = styled.div<SliderProps>`
+export const Slider = styled.div`
   position: relative;
   height: 400px;
   margin: 0;
@@ -27,7 +22,7 @@ export const Slider = styled.div<SliderProps>`
 `;
 
 export const SliderContent = styled.div<SliderContentProps>`
-  transform: translateX(-${(props) => props.translateValue}px);
+  transform: translateX(-${(props) => props.translatevalue}px);
   transition: transform ease-out ${(props) => props.transition}s;
   height: 400px;
   display: flex;
@@ -37,14 +32,11 @@ export const Slide = styled.a<SlideProps>`
   display: block;
   height: 100%;
   width: 100%;
-  background-image: url("${(props) => props.imageSrc}");
+  background-image: url("${(props) => props.imagesrc}");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   flex-shrink: 0;
-  @media (max-width: 600px) {
-    background-image: url("${(props) => props.mobileImageSrc}");
-  }
 `;
 
 export const Arrow = styled.button<ArrowProps>`

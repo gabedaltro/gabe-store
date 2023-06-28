@@ -6,11 +6,7 @@ interface NavbarCategoryProps {
 }
 
 const NavbarCategory: React.FC<NavbarCategoryProps> = ({ category }) => {
-  return (
-    <Link to={`/produtos?categoria=${category}`}>
-      <a>{category}</a>
-    </Link>
-  );
+  return <Link to={`/produtos?categoria=${category}`}>{category}</Link>;
 };
 
 export default NavbarCategory;

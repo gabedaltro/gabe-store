@@ -95,17 +95,13 @@ const ImageSlider: React.FC = () => {
   }
 
   return (
-    <Slider id="slider" hasBanners={filteredBanners.length > 0}>
+    <Slider id="slider">
       <SliderContent
-        translateValue={state.translate}
+        translatevalue={state.translate}
         transition={state.transition}
       >
         {filteredBanners.map((banner) => (
-          <Slide
-            key={banner.id}
-            imageSrc={banner.thumbnail}
-            mobileImageSrc={banner[0]}
-          />
+          <Slide key={banner.id} imagesrc={banner.thumbnail} />
         ))}
       </SliderContent>
       <Divider

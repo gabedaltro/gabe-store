@@ -83,14 +83,9 @@ const Slider: React.FC<SliderProps> = ({
       <Arrow onClick={nextSlide} direction="right">
         <ChevronRight color="primary" />
       </Arrow>
-      <StyledSlider
-        id={`slider-${uuid}`}
-        hasBanners={step > 0}
-        className={className}
-        {...rest}
-      >
+      <StyledSlider id={`slider-${uuid}`} className={className} {...rest}>
         <SliderContent
-          translateValue={state.translate}
+          translatevalue={state.translate}
           transition={state.transition}
         >
           {children}
